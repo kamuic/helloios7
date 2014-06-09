@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3713ECFD194588A800416384 /* MyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3713ECFC194588A800416384 /* MyData.m */; };
 		37B1A47F1805818800DC2AF3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B1A47E1805818800DC2AF3 /* Foundation.framework */; };
 		37B1A4811805818800DC2AF3 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B1A4801805818800DC2AF3 /* CoreGraphics.framework */; };
 		37B1A4831805818800DC2AF3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37B1A4821805818800DC2AF3 /* UIKit.framework */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3713ECFB194588A800416384 /* MyData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyData.h; sourceTree = "<group>"; };
+		3713ECFC194588A800416384 /* MyData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyData.m; sourceTree = "<group>"; };
 		37B1A47B1805818800DC2AF3 /* helloworld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = helloworld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		37B1A47E1805818800DC2AF3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		37B1A4801805818800DC2AF3 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -84,6 +87,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3713ECFA194588A800416384 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				3713ECFB194588A800416384 /* MyData.h */,
+				3713ECFC194588A800416384 /* MyData.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		37B1A4721805818800DC2AF3 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +129,7 @@
 		37B1A4841805818800DC2AF3 /* helloworld */ = {
 			isa = PBXGroup;
 			children = (
+				3713ECFA194588A800416384 /* model */,
 				37B1A48D1805818800DC2AF3 /* AppDelegate.h */,
 				37B1A48E1805818800DC2AF3 /* AppDelegate.m */,
 				37B1A4901805818800DC2AF3 /* Main_iPhone.storyboard */,
@@ -170,6 +183,7 @@
 				37B1A4771805818800DC2AF3 /* Sources */,
 				37B1A4781805818800DC2AF3 /* Frameworks */,
 				37B1A4791805818800DC2AF3 /* Resources */,
+				37BB82881945AF7000750739 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -253,6 +267,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		37BB82881945AF7000750739 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export\nCODESIGN_ALLOCATE=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate\nif [ \"${PLATFORM_NAME}\" ==\"iphoneos\" ] || [ \"${PLATFORM_NAME}\" == \"ipados\"]; then\n/Applications/Xcode.app/Contents/Developer/iphoneentitlements/gen_entitlements.py \"my.company.${PROJECT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\";\ncodesign -f -s \"iPhone Developer\" --entitlements \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${PROJECT_NAME}.xcent\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		37B1A4771805818800DC2AF3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -261,6 +291,7 @@
 				37B1A48F1805818800DC2AF3 /* AppDelegate.m in Sources */,
 				37B1A4981805818800DC2AF3 /* MasterViewController.m in Sources */,
 				37B1A48B1805818800DC2AF3 /* main.m in Sources */,
+				3713ECFD194588A800416384 /* MyData.m in Sources */,
 				37B1A49B1805818800DC2AF3 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,6 +387,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -390,6 +422,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -398,10 +431,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "helloworld/helloworld-Prefix.pch";
 				INFOPLIST_FILE = "helloworld/helloworld-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -411,10 +447,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "helloworld/helloworld-Prefix.pch";
 				INFOPLIST_FILE = "helloworld/helloworld-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -480,6 +519,7 @@
 				37B1A4B51805818800DC2AF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		37B1A4B61805818900DC2AF3 /* Build configuration list for PBXNativeTarget "helloworldTests" */ = {
 			isa = XCConfigurationList;
@@ -488,6 +528,7 @@
 				37B1A4B81805818900DC2AF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
