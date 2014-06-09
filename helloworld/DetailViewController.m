@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import "model/MyData.h"
 
 @interface DetailViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
@@ -45,6 +46,18 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+    [self showMyDataInLabel];
+}
+
+#pragma mark  MyData Label
+-(void)showMyDataInLabel
+{
+    MyData *myData = [[MyData alloc]initWithName:@"kevin" andAge:28];
+    UILabel* label  =  [[UILabel alloc]initWithFrame:CGRectMake(0, 100, 100, 100)];
+    [self.view addSubview:label];
+    NSLog(@"%@",[myData name]);
+    label.text = [myData name];
+    
 }
 
 - (void)didReceiveMemoryWarning
